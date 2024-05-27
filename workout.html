@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="de-DE">
+<head>
+    <meta charset="utf-8">
+    <title>Just Another Workout Timer</title>
+    <link rel="stylesheet" type="text/css" href="./css/workout.css">
+</head>
+<body>
+    <audio id="high" src="./assets/assets_beep_high.wav"></audio>
+    <audio id="low" src="./assets/assets_beep_low.wav"></audio>
+    <div id="workout-name"></div>
+    <div id="header" class="center-text">
+        <div id="set-and-timer"><span id="set-number"></span> - <span id="timer"></span></div>
+        <progress id="progressBar" value="100" max="100"></progress>
+        <div id="exercise-name"></div>
+        <div id="next-exercise-name"></div>
+    </div>
+    <div id="show-current-set">
+        <div id="current-set-header">Aktueller Satz</div>
+        <div id="current-set-container"></div>
+    </div>
+    <div id="show-next-set">
+        <div id="next-set-header">Nächster Satz</div>
+        <div id="next-set-container"></div>
+    </div>
+    <div id="buttons">
+        <div class="center">
+            <button id="lastButton">&#x25ae;&#x25c0;</button>
+            <button id="pauseButton">&#x25b6;</button>
+            <button id="nextButton">&#x25b6;&#x25ae;</button>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="exercise-number"></div>
+        <div id="set-number-from-total"></div>
+        <div id="repetitions"></div>
+        <div id="workout-time"></div>
+    </div>
+    <div id="debug"></div>
+    <script src="./workout.js" type="text/javascript"></script>
+</body>
+</html>
