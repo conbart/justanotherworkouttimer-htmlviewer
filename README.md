@@ -1,1 +1,1 @@
-# HTML Viewer for Android App Just Another Workout Timer
+# HTML Viewer for Android App from F-Droid Store: "Just Another Workout Timer"
