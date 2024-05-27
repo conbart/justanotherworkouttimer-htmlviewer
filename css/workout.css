@@ -84,7 +84,7 @@ a:link, a:hover, a:visited {
   border-radius: 12px;
 }
 
-#lastButton, #nextButton {
+#backButton, #nextButton {
   font-size: 1.25em;
   width: 2.5em;
   height: 2.5em;

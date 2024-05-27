@@ -56,6 +56,92 @@ document.getElementById('pauseButton').addEventListener('click', function() {
     }
 });
 
+document.getElementById('nextButton').addEventListener('click', function() {
+    if (isTimerRunning) {
+        // Timer anhalten
+        clearInterval(timer);
+        isTimerRunning = false;
+        
+        // Wenn es eine nächste Übung in dem Set gibt springe zu dieser Übung
+        if (currentExerciseIndex+1 < exercises.length) {
+            currentExerciseIndex++;
+            // Zeiten zurücksetzen
+            currentDuration = exercises[currentExerciseIndex].duration;
+            calculateCurrentWorkoutTime();
+        }
+        else {
+            // Wenn es eine Weitere Wiederholung in dem Set gibt springe wieder zur ersten Übung im Set
+            if (currentRep+1 <= reps) { 
+                currentRep++;
+                currentExerciseIndex = 0;
+                // Zeiten zurücksetzen
+                currentDuration = exercises[currentExerciseIndex].duration;
+                calculateCurrentWorkoutTime();
+            }
+            else {
+                // Wenn es ein nächstes Set gibt springe zur ersten Übung in diesem Set
+                if (currentSetsIndex+1 < sets.length) {
+                    currentSetsIndex++;
+                    currentRep = 1;
+                    currentExerciseIndex = 0;
+                    // Zeiten zurücksetzen
+                    currentDuration = exercises[currentExerciseIndex].duration;
+                    calculateCurrentWorkoutTime();                    
+                }
+            }
+        }
+        
+        // Timer wieder starten
+        timer = setInterval(updateTimer, 1000);
+        isTimerRunning = true;
+        // Anzeige updaten
+        updateDisplay();        
+    }
+});
+
+document.getElementById('backButton').addEventListener('click', function() {
+    if (isTimerRunning) {
+        // Timer anhalten
+        clearInterval(timer);
+        isTimerRunning = false;
+        
+        // Wenn es eine vorherige Übung in dem Set gibt springe zu dieser Übung
+        if (currentExerciseIndex-1 >= 0) {
+            currentExerciseIndex--;
+            // Zeiten zurücksetzen
+            currentDuration = exercises[currentExerciseIndex].duration;
+            calculateCurrentWorkoutTime();
+        }
+        else {
+            // Wenn es eine Vorherige Wiederholung in dem Set gibt springe zur letzten Übung in der vorherigen Wiederholung im Set
+            if (currentRep-1 > 0) { 
+                currentRep--;
+                currentExerciseIndex = sets[currentSetsIndex].exercises.length-1;
+                // Zeiten zurücksetzen
+                currentDuration = exercises[currentExerciseIndex].duration;
+                calculateCurrentWorkoutTime();
+            }
+            else {
+                // Wenn es ein vorheriges Set gibt springe zur letzten Übung in diesem Set
+                if (currentSetsIndex-1 >= 0) {
+                    currentSetsIndex--;
+                    currentRep = sets[currentSetsIndex].repetitions;
+                    currentExerciseIndex = sets[currentSetsIndex].exercises.length-1;
+                    // Zeiten zurücksetzen
+                    currentDuration = exercises[currentExerciseIndex].duration;
+                    calculateCurrentWorkoutTime();                    
+                }
+            }
+        }
+        
+        // Timer wieder starten
+        timer = setInterval(updateTimer, 1000);
+        isTimerRunning = true;
+        // Anzeige updaten
+        updateDisplay();        
+    }
+});
+
 function updateSetsDisplay(){
     
     // Aktueller Satz
@@ -238,6 +324,44 @@ function updateTimer() {
     }
 }
 
+function calculateWorkoutTime() {
+        // Workouttime berechnen
+        for (s=0; s < sets.length; s++) { // Iterate through sets 
+            r = sets[s].repetitions;
+            for (e=0; e < sets[s].exercises.length; e++) { // Iterate through exercises
+                workoutTime = workoutTime + (sets[s].exercises[e].duration * r);
+            }
+        }
+        workoutTime = workoutTime+introDuration;
+}
+
+function calculateCurrentWorkoutTime() {
+        // Workouttime berechnen anhand der aktuellen Übung (Anfang)
+        currentWorkoutTime = 0;
+        
+        // zuerst alle Übungen im aktuellen Set in der aktuellen Wiederholung
+        for (e=currentExerciseIndex; e < sets[currentSetsIndex].exercises.length; e++){
+            currentWorkoutTime = currentWorkoutTime + sets[currentSetsIndex].exercises[e].duration;
+        }
+        
+        // nun alle Übungen im aktuellen Set ab der nächsten Wiederholung
+        current = sets[currentSetsIndex].repetitions;
+        for (r=currentRep+1; r <= sets[currentSetsIndex].repetitions; r++) {
+            for (e=0; e < sets[currentSetsIndex].exercises.length; e++){
+                currentWorkoutTime = currentWorkoutTime + sets[currentSetsIndex].exercises[e].duration;
+            }
+        }
+        
+        // zuletzt alle Übungen ab dem nächsten Set
+        for (s=currentSetsIndex+1; s < sets.length; s++) { // Iterate through sets
+            r = sets[s].repetitions;
+            for (e=0; e < sets[s].exercises.length; e++) { // Iterate through exercises
+                currentWorkoutTime = currentWorkoutTime + (sets[s].exercises[e].duration * r);
+            }
+        }
+}
+
+
 function startExercise() {
 
         document.getElementById('workout-name').innerHTML = `<a href="index.html">&#x1F860;</a> ${workoutName}`;
@@ -259,14 +383,7 @@ function startExercise() {
 
         document.getElementById('show-next-set').style.visibility = "hidden";
         
-        // Workouttime berechnen
-        for (s=0; s < sets.length; s++) { // Iterate through sets 
-            r = sets[s].repetitions;
-            for (e=0; e < sets[s].exercises.length; e++) { // Iterate through exercises
-                workoutTime = workoutTime + (sets[s].exercises[e].duration * r);
-            }
-        }
-        workoutTime = workoutTime+introDuration;
+        calculateWorkoutTime();
         
         currentWorkoutTime = workoutTime;
         
