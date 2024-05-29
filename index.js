@@ -1,3 +1,7 @@
+// Autor: Torsten Kockler
+// 2024
+
+// AJAX - Namen der Workout Dateien vom Server laden
 fetch('dir.php')
 .then(response => response.json())
 .then(data => {
@@ -8,6 +12,7 @@ fetch('dir.php')
 })
 .catch(error => console.error('Fehler beim Abrufen der Dateinamen:',error));
 
+// Anzeige der Workouts in der Übersicht
 function getWorkoutData(filename){
   fetch('./workouts/'+filename)
   .then(response => response.json())

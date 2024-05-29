@@ -1,8 +1,11 @@
+/* Autor: Torsten Kockler
+ * 2024 */
+
 html {
-    background-color:#141B1B;
-    color:#DDE4E4;
-    font-family: Verdana,Arial,sans-serif;
-    font-size:0.8em;
+  background-color:#141B1B;
+  color:#DDE4E4;
+  font-family: Verdana,Arial,sans-serif;
+  font-size:0.8em;
 }
 
 #header, #footer, #show-current-set, #show-next-set {

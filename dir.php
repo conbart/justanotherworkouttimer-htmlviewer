@@ -1,4 +1,8 @@
 <?php
+
+// Autor: Torsten Kockler
+// 2024
+
 $directory = "./workouts";
 
 if (is_dir($directory)) {

@@ -1,8 +1,11 @@
+/* Autor: Torsten Kockler
+ * 2024 */
+
 html {
-    background-color:#141B1B;
-    color:#DDE4E4;
-    font-family: Verdana,Arial,sans-serif;
-    font-size:0.8em;
+  background-color:#141B1B;
+  color:#DDE4E4;
+  font-family: Verdana,Arial,sans-serif;
+  font-size:0.8em;
 }
 
 .workout-item {
@@ -15,13 +18,13 @@ html {
 }
 
 .left {
-flex: 1;
-text-align: left;
+  flex: 1;
+  text-align: left;
 }
 
 .right {
-flex: 1;
-text-align: right;
+  flex: 1;
+  text-align: right;
 }
 
 #workout {
@@ -38,120 +41,12 @@ text-align: right;
 }
 
 button {
-width: 1em; /* Breite des Buttons in em */
-height: 1em; /* Höhe des Buttons in em */
-border-radius: 50%; /* Rundung des Buttons für einen Kreis */
-background-color: #DDE4E4; /* Hintergrundfarbe */
-border: none;
-text-align: center; /* Zentrieren des Textes */
-line-height: 0.75em; /* Vertikale Zentrierung des Textes */
-font-size: 2em;
-}
-
-#set-and-timer, #exercise-name {
-  font-size: 3em;
-  font-weight: bold;
-}
-
-#footer {
-  font-size: 1.25em;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-#exercise-number, #set-number-from-total, #repetitions, #workout-time {
-  flex-basis: 50%;
-}
-
-#exercise-number, #set-number-from-total {
-  order: 1;
-}
-
-#repetitions, #workout-time {
-  order: 2;
-}
-
-#set-number-from-total, #workout-time {
-  text-align: right;
-}
-
-#buttons {
-  height: 3em;
-  position: relative;
-}
-
-.center-text {
-  text-align: center;
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-#pauseButton {
-  font-size: 2em;
-  width: 2em;
-  height: 2em;
-  background-color: #004F53;
-  color: #9CF0F7;
-  border: 0;
-  border-radius: 12px;
-}
-
-#lastButton, #nextButton {
-  font-size: 1.25em;
-  width: 2.5em;
-  height: 2.5em;
-  background-color: #004F53;
-  color: #9CF0F7;
-  border: 0;
-  border-radius: 10px;
-  margin: 5px;
-  text-align: center;
-}
-
-#progressBar {
-  height: 0.5em;
-  width: 100%;
-  background-color: #3F4849;
-  appearance: none;
+  width: 1em; /* Breite des Buttons in em */
+  height: 1em; /* Höhe des Buttons in em */
+  border-radius: 50%; /* Rundung des Buttons für einen Kreis */
+  background-color: #DDE4E4; /* Hintergrundfarbe */
   border: none;
-}
-
-#progressBar::-webkit-progress-bar {
-  background-color: #3F4849;
-}
-
-#progressBar::-webkit-progress-value {
-  background-color: #B1CCCD;
-}
-
-#progressBar::-moz-progress-bar {
-  background-color: #B1CCCD;
-}
-
-#current-set-header, #next-set-header {
-  font-size: 1.25em;
-  font-weight: bold;
-  padding: 0.2em;
-}
-
-.active {
-  background-color: #161D1D;
-}
-
-.inactive {
-  background-color: #3A4747;
-}
-
-.current-sets-display, .next-sets-display {
-  font-size: 1.25em;
-  padding: 0.2em;
+  text-align: center; /* Zentrieren des Textes */
+  line-height: 0.75em; /* Vertikale Zentrierung des Textes */
+  font-size: 2em;
 }
